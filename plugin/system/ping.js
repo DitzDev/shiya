@@ -4,7 +4,7 @@ exports.handler = {
     desc: "Check bot response time",
     tags: ['Tools 🔨'],
     opts: {
-        admin: true
+        owner: true
     },
     usage: "ping",
     exec: async (m, { conn }) => {

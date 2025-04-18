@@ -10,7 +10,7 @@
 
 <div align="center">
 
-[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges) [![Watchers](https://img.shields.io/github/watchers/DitzDev/YukiBotz.svg)](https://github.com/DitzDev/YukiBotz/watchers) [![Stars](https://img.shields.io/github/stars/DitzDev/YukiBotz.svg)](https://github.com/DitzDev/YukiBotz/stargazers) [![Forks](https://img.shields.io/github/forks/DitzDev/YukiBotz.svg)](https://github.com/DitzDev/YukiBotz/network/members) [![Repo Size](https://img.shields.io/github/repo-size/DitzDev/YukiBotz.svg)](https://github.com/DitzDev/YukiBotz) [![Issues](https://img.shields.io/github/issues/DitzDev/YukiBotz)](https://github.com/DitzDev/YukiBotz/issues)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges) [![Watchers](https://img.shields.io/github/watchers/DitzDev/shiya.svg)](https://github.com/DitzDev/shiya/watchers) [![Stars](https://img.shields.io/github/stars/DitzDev/shiya.svg)](https://github.com/DitzDev/shiya/stargazers) [![Forks](https://img.shields.io/github/forks/DitzDev/shiya.svg)](https://github.com/DitzDev/shiya/network/members) [![Repo Size](https://img.shields.io/github/repo-size/DitzDev/shiya.svg)](https://github.com/DitzDev/shiya) [![Issues](https://img.shields.io/github/issues/DitzDev/shiya)](https://github.com/DitzDev/shiya/issues)
 
 <img src="https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png"/>
 
@@ -23,7 +23,7 @@
 Shiya-Botz is a lightweight WhatsApp bot script, using libraries from [Baileys](https://github.com/WhiskeySockets/Baileys). This project is designed to be a simple and easy-to-use bot for WhatsApp, with a focus on user experience and customization. With Type **plugin**, users no longer need to manage or develop complicated code.
 
 > [!NOTE]
-> This project is the latest version of [YukiBotz](https://github.com/DitzDev/YukiBotz) built from zero to fix issues, and make some changes.
+> This project is the latest version of [shiya](https://github.com/DitzDev/shiya) built from zero to fix issues, and make some changes.
 
 ### Features
 - [x] **Plugin-based architecture**: Easily add or remove features without modifying the core code.
