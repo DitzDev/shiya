@@ -23,7 +23,7 @@
 Shiya-Botz is a lightweight WhatsApp bot script, using libraries from [Baileys](https://github.com/WhiskeySockets/Baileys). This project is designed to be a simple and easy-to-use bot for WhatsApp, with a focus on user experience and customization. With Type **plugin**, users no longer need to manage or develop complicated code.
 
 > [!NOTE]
-> This project is the latest version of [shiya](https://github.com/DitzDev/shiya) built from zero to fix issues, and make some changes.
+> This project is the latest version of [YukiBotz](https://github.com/DitzDev/YukiBotz) built from zero to fix issues, and make some changes.
 
 ### Features
 - [x] **Plugin-based architecture**: Easily add or remove features without modifying the core code.
