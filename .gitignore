@@ -1,0 +1,6 @@
+/node_modules/
+package-lock.json
+# Session
+/shiya/
+# Databases
+database.json
