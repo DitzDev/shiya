@@ -1,10 +1,10 @@
-<div style="text-align:center;">
+<div align="center">
 
 # Shiya-Botz
 
 ### Shiya Botz | Open Source Project
 
-<img src="media/shiya.png" width="480" height="480" alt="Li Shiya">
+<img src="media/shiya.png" width="240" height="240" alt="Li Shiya">
 
 </div>
 
@@ -17,7 +17,7 @@
 </div>
 
 > [!WARNING]
-> This project is still under development
+> This project is still under development!!!!
 
 ## Introduction
 Shiya-Botz is a lightweight WhatsApp bot script, using libraries from [Baileys](https://github.com/WhiskeySockets/Baileys). This project is designed to be a simple and easy-to-use bot for WhatsApp, with a focus on user experience and customization. With Type **plugin**, users no longer need to manage or develop complicated code.
@@ -29,6 +29,7 @@ Shiya-Botz is a lightweight WhatsApp bot script, using libraries from [Baileys](
 - [x] **Plugin-based architecture**: Easily add or remove features without modifying the core code.
 - [x] **Customizable**: Users can customize the bot's behavior, appearance, and functionality
 - [x] **No session time out or other problems related to the session**: While the bot is running, the process will not stop because it is built with an error handler.
+- [x] **Flexible**: Run all conditions in one file.
 
 ## Installation
 To install & run Shiya-Botz, follow these steps:
