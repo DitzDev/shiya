@@ -4,3 +4,5 @@ package-lock.json
 /shiya/
 # Databases
 database.json
+# ENV
+.env

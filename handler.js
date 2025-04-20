@@ -37,12 +37,14 @@ module.exports = {
                         if (!("name" in user)) user.name = m.name;
                         if (!isNumber(user.age)) user.age = -1;
                         if (!isNumber(user.regTime)) user.regTime = -1;
+                        if (!isNumber(user.limit)) user.limit = 50;
                     }
                     if (!isNumber(user.afk)) user.afk = -1;
                     if (!('afkReason' in user)) user.afkReason = '';
                     if (!('banned' in user)) user.banned = false;
                     if (!('bannedReason' in user)) user.bannedReason = '';
                     if (!('premium' in user)) user.premium = false;
+                    if (!isNumber(user.premiumDate)) user.premiumDate = 0;
                 } else global.db.data.users[m.sender] = {
                     name: m.name,
                     level: 0,
@@ -167,6 +169,13 @@ module.exports = {
             const body = typeof m.text == 'string' ? m.text : false;
             const isROwner = [conn.decodeJid(this.user.id), ...global.owner.map(([number, isCreator, isDeveloper]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender);
             const isOwner = isROwner || m.fromMe;
+
+            if (isROwner) {
+                db.data.users[m.sender].premium = true;
+                db.data.users[m.sender].premiumDate = "infinity";
+                db.data.users[m.sender].limit = "infinity";
+                db.data.users[m.sender].moderator = true;
+            }
 
             if (opts['queque'] && m.text && !(isMods || isPrems)) {
                 let queque = this.msgqueque, time = 1000 * 5
@@ -565,24 +574,7 @@ global.dfail = (type, m, conn) => {
         );
     } else if (type == 'unreg') {
         conn.sendMessage(m.chat, {
-            text: "Hallo! Shiya gabisa prosess Permintaan kamu karena kamu belum terdaftar😌, Yuk pilih cara daftar di bawah ini!",
-            footer: "ShiyaBotz By DitzDev",
-            buttons: [
-                {
-                    buttonId: `.register`,
-                    buttonText: {
-                        displayText: '📃 Via OTP'
-                    }, type: 1
-                },
-                {
-                    buttonId: `.regmail`,
-                    buttonText: {
-                        displayText: '✉️ Via Email'
-                    }, type: 1
-                }
-            ],
-            headerType: 1,
-            viewOnce: true,
+            text: "Hallo! Shiya gabisa prosess Permintaan kamu karena kamu belum terdaftar😌, Yuk pilih cara daftar di bawah ini dan dapatkan 50 limit tambahan!\n\n```.register``` Untuk register via Captcha\n```.regmail``` Untuk register via email"
         }, { quoted: m })
     };
     let msg3 = {

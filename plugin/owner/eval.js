@@ -9,7 +9,8 @@ exports.handler = {
     opts: {
         owner: true
     },
-    exec: async (m, { conn, usedPrefix, noPrefix, args, groupMetadata }) => {
+    exec: async (m, _2) => {
+        let { conn, usedPrefix, noPrefix, args, groupMetadata, chatUpdate } = _2;
         let _return;
         let _syntax = "";
         let _text = (/^=/.test(usedPrefix) ? "return " : "") + noPrefix;
@@ -51,6 +52,7 @@ exports.handler = {
                 groupMetadata,
                 f,
                 f.exports,
+                [conn, _2]
             );
         } catch (e) {
             let err = await syntaxerror(_text, "Execution Function", {

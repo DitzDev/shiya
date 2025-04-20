@@ -1,4 +1,5 @@
 (async () => {
+    require("dotenv").config();
     require('./system/settings');
     const simple = require('./lib/simple');
     const { consoleWarn, consoleInfo, consoleErr } = require("./lib/console");
@@ -97,7 +98,7 @@
 
     if (pairingCode && !conn.authState.creds.registered) {
         const phoneNumber = await question(chalk.yellowBright("Input your number eg 628xxx: "));
-        const code = await conn.requestPairingCode(phoneNumber);
+        const code = await conn.requestPairingCode(phoneNumber, "DITZDEV1");
         const formattedCode = code.slice(0, 4) + "-" + code.slice(4);
         console.log(chalk.bgBlack(chalk.greenBright(`~ Pairing code: ${formattedCode}`)));
     }
@@ -211,7 +212,7 @@
         try {
             plugins[filename] = require(fullPath);
         } catch (e) {
-            consoleErr(`Gagal load plugin ${filename}:`, e.message);
+            consoleErr(`Gagal load plugin ${filename}: ` + e);
             delete plugins[filename];
         }
     }
@@ -261,4 +262,45 @@
         .on('unlink', reload);
 
     reloadHandler();
+
+    async function _quickTest() {
+        let test = await Promise.all([
+            cp.spawn('ffmpeg'),
+            cp.spawn('ffprobe'),
+            cp.spawn('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-filter_complex', 'color', '-frames:v', '1', '-f', 'webp', '-']),
+            cp.spawn('convert'),
+            cp.spawn('magick'),
+            cp.spawn('gm'),
+            cp.spawn('find', ['--version'])
+        ].map(p => {
+            return Promise.race([
+                new Promise(resolve => {
+                    p.on('close', code => {
+                        resolve(code !== 127)
+                    })
+                }),
+                new Promise(resolve => {
+                    p.on('error', _ => resolve(false))
+                })
+            ])
+        }))
+        let [ffmpeg, ffprobe, ffmpegWebp, convert, magick, gm, find] = test
+        let s = support = {
+            ffmpeg,
+            ffprobe,
+            ffmpegWebp,
+            convert,
+            magick,
+            gm,
+            find
+        }
+        Object.freeze(support)
+        if (!s.ffmpeg) consoleWarn('Please install ffmpeg for sending videos (pkg install ffmpeg)')
+        if (s.ffmpeg && !s.ffmpegWebp) consoleWarn('Stickers may not animated without libwebp on ffmpeg (--enable-ibwebp while compiling ffmpeg)')
+        if (!s.convert && !s.magick && !s.gm) consoleWarn('Stickers may not work without imagemagick if libwebp on ffmpeg doesnt isntalled (pkg install imagemagick)')
+    }
+
+    _quickTest()
+        .then(() => consoleInfo('Quick Test Done'))
+        .catch(console.error)
 })();
