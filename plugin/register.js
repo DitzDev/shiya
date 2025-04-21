@@ -133,7 +133,6 @@ exports.handler = {
                         tteks += '```Date:``` ' + `${tanggal}\n\n`;
                         tteks += '```RPG StarterPack```\n\n';
                         tteks += '```Limit:``` ' + `${user.limit}\n`;
-                        tteks += `Supported By @${kontol.replace(/@.+/g, '')}`;
                         await conn.sendMessage(m.chat, {
                             text: tteks,
                             contextInfo: {
@@ -193,7 +192,7 @@ exports.handler = {
             let mailOptions = {
                 from: {
                     name: 'Shiya System Service',
-                    address: 'shiyabotz.offc@gmail.com'
+                    address: global.smtp.user
                 },
                 to: args[0],
                 subject: 'Email Verification',

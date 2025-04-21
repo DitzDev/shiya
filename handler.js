@@ -206,6 +206,7 @@ module.exports = {
                 let plugin = global.plugins[name];
                 if (!plugin || !plugin.handler) continue;
                 const { handler } = plugin;
+                if (handler.disabled === true) return m.reply("Perintah ini sedang di nonaktifkan, Hubungi owner untuk mengaktifkan perintah ini.");
                 if (typeof handler.all === 'function') {
                     try {
                         await handler.all.call(this, m, chatUpdate);
@@ -462,7 +463,7 @@ module.exports = {
                                 "productImage": messa.imageMessage,
                                 "productId": "343056591714248",
                                 "title": text,
-                                "description": "Made by ©DitzOfc",
+                                "description": "Made by ©DitzDev",
                                 "currencyCode": "YURO",
                                 "priceAmount1000": 10000,
                                 "productImageCount": 2
