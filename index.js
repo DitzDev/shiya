@@ -29,7 +29,8 @@ function parseVersion(v) {
 }
 
 const packageJson = JSON.parse(fs.readFileSync('./package.json'))
-const currentVersion = parseVersion(packageJson.version);
+const currentVersion = packageJson.version;
+const parseCurrentVersion = parseVersion(packageJson.version);
 
 async function systemCheck() {
     spinnies.add('syscheck', { text: chalk.cyan('System check is running...') })
@@ -82,12 +83,13 @@ async function checkUpdate() {
         const url = `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`
 
         const response = await axios.get(url)
-        const latestVersion = parseVersion(response.data.tag_name.replace('shiya-v', ''))
+        const latestVersion = response.data.tag_name.replace('shiya-v', '')
+        const parseLatestVersion = parseVersion(response.data.tag_name.replace('shiya-v', ''))
         const releaseUrl = response.data.assets.map(item => item.browser_download_url)[0];
 
         await new Promise(resolve => setTimeout(resolve, 1500))
 
-        if (latestVersion > currentVersion && releaseUrl !== '') {
+        if (parseLatestVersion > parseCurrentVersion && releaseUrl !== '') {
             spinnies.succeed('update', { text: chalk.yellow(`New version available: v${latestVersion}`) })
 
             console.log('')
