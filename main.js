@@ -98,7 +98,7 @@
 
     if (pairingCode && !conn.authState.creds.registered) {
         const phoneNumber = await question(chalk.yellowBright("Input your number eg 628xxx: "));
-        const code = await conn.requestPairingCode(phoneNumber, "DITZDEV1");
+        const code = await conn.requestPairingCode(phoneNumber);
         const formattedCode = code.slice(0, 4) + "-" + code.slice(4);
         console.log(chalk.bgBlack(chalk.greenBright(`~ Pairing code: ${formattedCode}`)));
     }

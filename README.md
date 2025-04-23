@@ -49,6 +49,22 @@ To install & run Shiya-Botz, follow these steps:
   ```
 - Run the bot using `npm start` or `yarn start` in the project directory. And congrats your bot is live ~
 
+## For Termux Users
+
+> [!WARNING]
+> For termux users, this step is recommended, because this script will install several native modules such as "canvas"
+
+To install Shiya-Botz on Termux, ensure you have a compatible environment by executing the following commands:
+```bash
+# Enter to directory project, then
+bash shiya_termux.sh
+```
+
+> [!NOTE]
+> This process will take quite a long time, it will install the required dependencies, make sure you have a stable internet connection.
+
+- Next step, you just need to follow the steps above.
+
 ## Issue
 If you encounter any issues, please report them to the [Issues Page](https://github.com/DitzDev/shiya/issues).
 

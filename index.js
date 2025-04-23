@@ -23,8 +23,13 @@ const spinnies = new Spinnies({
     }
 })
 
+function parseVersion(v) {
+    const parts = v.split('.').map(Number);
+    return parts[0] * 10000 + parts[1] * 100 + parts[2];
+}
+
 const packageJson = JSON.parse(fs.readFileSync('./package.json'))
-const currentVersion = packageJson.version
+const currentVersion = parseVersion(packageJson.version);
 
 async function systemCheck() {
     spinnies.add('syscheck', { text: chalk.cyan('System check is running...') })
@@ -33,7 +38,7 @@ async function systemCheck() {
         const totalRam = (os.totalmem() / 1024 / 1024 / 1024).toFixed(2)
         const freeRam = (os.freemem() / 1024 / 1024 / 1024).toFixed(2)
         const usedRam = (totalRam - freeRam).toFixed(2)
-        const cpuInfo = os.cpus()[0].model
+        const cpuInfo = os.cpus()[0]?.model
         const cpuCores = os.cpus().length
         const osType = os.type()
         const osVersion = os.release()
@@ -77,12 +82,12 @@ async function checkUpdate() {
         const url = `https://api.github.com/repos/${repoOwner}/${repoName}/releases/latest`
 
         const response = await axios.get(url)
-        const latestVersion = response.data.tag_name.replace('v', '')
-        const releaseUrl = response.data.assets.find(asset => asset.name === `shiya-v${latestVersion}.zip`)?.browser_download_url
+        const latestVersion = parseVersion(response.data.tag_name.replace('shiya-v', ''))
+        const releaseUrl = response.data.assets.map(item => item.browser_download_url)[0];
 
         await new Promise(resolve => setTimeout(resolve, 1500))
 
-        if (latestVersion > currentVersion && releaseUrl) {
+        if (latestVersion > currentVersion && releaseUrl !== '') {
             spinnies.succeed('update', { text: chalk.yellow(`New version available: v${latestVersion}`) })
 
             console.log('')

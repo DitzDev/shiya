@@ -1,6 +1,6 @@
 {
   "name": "shiya",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight Bot WhatsApp using Baileys",
   "type": "commonjs",
   "main": "index.js",
@@ -23,6 +23,7 @@
     "adm-zip": "^0.5.16",
     "awesome-phonenumber": "^2.70.0",
     "baileys": "^6.7.16",
+    "canvafy": "^7.2.1",
     "cfonts": "^3.3.0",
     "chalk": "^4.1.1",
     "child_process": "^1.0.2",
