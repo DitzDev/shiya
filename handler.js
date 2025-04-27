@@ -202,6 +202,7 @@ module.exports = {
             const isBotAdmin = bot && bot.admin || false // Are you Admin?
             const isPrem = global.db.data.users[m.sender].premium
             const isBan = global.db.data.users[m.sender].banned
+            const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             for (let name in global.plugins) {
                 let plugin = global.plugins[name];
                 if (!plugin || !plugin.handler) continue;
@@ -297,8 +298,8 @@ module.exports = {
                 if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
                     let chat = global.db.data.chats[m.chat]
                     let user = global.db.data.users[m.sender]
-                    if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
-                    if (name != 'unbanuser.js' && user && user.banned) return
+                    if (!isOwner && chat && chat.isBanned) return
+                    if (user && user.banned) return
                 }
                 if (handler.opts?.owner && !isOwner) { // Number Owner
                     fail('owner', m, this)
@@ -328,6 +329,10 @@ module.exports = {
                 }
                 if (handler.opts?.register == true && _user.registered == false) { // Butuh daftar?
                     fail('unreg', m, this)
+                    continue
+                }
+                if (handler.opts?.mods && !isMods) { // Moderator
+                    fail('mods', m, this)
                     continue
                 }
                 if (handler.opts?.level > _user.level) {

@@ -253,7 +253,7 @@ exports.handler = {
                     otp: code,
                     users,
                     timeout: setTimeout(() => {
-                        delete conn.regmail[m.chat][m.sender];
+                        delete conn.regmail[m.chat]?.[m.sender];
                     }, 60 * 1000)
                 }
             }

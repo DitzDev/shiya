@@ -10,3 +10,5 @@ global.smtp = {
     user: process.env.SMTP_USER || '', /** Replace with your user email */
     pass: process.env.SMTP_PASS || '', /** Replace with your user smtp password */
 }
+
+global.mods = ['6285891267541'] // Moderator

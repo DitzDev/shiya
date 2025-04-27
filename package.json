@@ -1,6 +1,6 @@
 {
   "name": "shiya",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Lightweight Bot WhatsApp using Baileys",
   "type": "commonjs",
   "main": "index.js",

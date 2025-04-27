@@ -25,7 +25,7 @@ exports.handler = {
     desc: 'Show bot menu',
     usage: '.menu <tags>',
     cmd: ['menu'],
-    tags: ['Public 🌐'],
+    tags: ['Public'],
     exec: async (m, { conn, text, usedPrefix: _p, command }) => {
         try {
             let package = JSON.parse(await fs.promises.readFile(path.join(__dirname, '../package.json')).catch(_ => '{}'));
